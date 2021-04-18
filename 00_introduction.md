@@ -59,7 +59,7 @@ dictionary
 
 ### Parsing through the string
 
-```
+```python
 stl = "string for learning"
 fml = "This is string for my learning"
 stl[5]
@@ -71,7 +71,7 @@ stl[-2:-4] # negative indexing also works similarly
 ```
 ### built in functions for strings. 
 
-```
+```python
 stl.upper() # returns the string in upper case
 stl.isupper() # returns whether the string is upper case or not 
 stl.isnumric() 
@@ -80,7 +80,7 @@ dir(str) # retuens all possible methods and functions for str
 ```
 ### Stripping and slicing of a string 
 
-```
+```python
 stl.rstrip() # all right side space is stripped
 stl.lstrip()
 stl.strip()
@@ -100,7 +100,7 @@ splitted = line.split(",")
 ```
 ### Lets find the character or string within string 
 
-```
+```python
 line.find('rahul')
 line.replace("ra","me")
 'mehul,29,40,35'
@@ -110,7 +110,8 @@ line.replace("ra","me")
 ### Tuple and opertions
 
 Tuples are tricky if not used in proper format. 
-```
+
+```python
 mtup = (1,2,"hello",True)
 type(mtup)
 tuple
@@ -143,7 +144,7 @@ tup1+temptup
 # List and operations 
 Creating, operating, appending, etc. 
 
-```
+```python
 myl = []
 myl = [1,2,3,"rahul",True]
 len(myl) # returns the length of list 
@@ -189,7 +190,7 @@ nmbr.sort(reverse = True)
 
 ### Sets and operations 
 
-```
+```python
 mtset = {}
 mset = {1,2,3,4,5,6,6,7,8,9}
 {1, 2, 3, 4, 5, 6, 7, 8, 9}
@@ -212,7 +213,7 @@ mset.sort()
 
 # Dictionary 
 
-```
+```python
 mydict = { 1:"rajnish", 2:"Rambo"}
 print(my_dict)
 
@@ -250,7 +251,7 @@ dictt = {11:'hi', 11:'bye'}
 * membership/identity in not in /is not is
 
 
-```
+```python
 myl = [1,2,3,4,5]
 1 in myl
 True 
