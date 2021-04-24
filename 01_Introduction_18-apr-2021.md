@@ -38,11 +38,11 @@ else if percent > 80 :
 
 ```python
 try : 
-num = input("Enter a number")
-if num > 5 :
-    print("Something")
-else : 
-    print("Something else")
+    num = input("Enter a number")
+    if num > 5 :
+        print("Something")
+    else : 
+        print("Something else")
 
 except Exception as e:
     print(e)
@@ -246,3 +246,4 @@ fout.write(" This is a New student text \n")
 fout.write(" This is a latest text \n")
 fout.close()
 ```
+####  End of File 
