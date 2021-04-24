@@ -129,6 +129,8 @@ arra.view() # printing will take mem location view will not.
 # In order to keep it unaffacted we use copy
 
 asub = arra[:3].copy
+# The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array.
+
 ```
 
 ### Reshaping 
@@ -139,6 +141,8 @@ areshaed = arra.reshape(2,3)
 areshaed.view()
 array([[ 1,  2,  3],
        [55,  4,  3]])
+
+# The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view.
 ```
 
 ### Arithmetic operations : 
@@ -158,20 +162,31 @@ a1 = np.random.randint(1,100,size=1000)
 %timeit np.sum(arra)
 
 # in sum() it does type checking of data. 
-arra + 5 # Singular arithmetic 
-arra**2 # Singular 
+arra + 5 # Singular arithmetic applies adding to all elements
+arra**2 # Singular  arithmetic applies adding to all elements
 arra.add(5) # Same as above.
 
-np.sum(arra,axis=0)
-np.sum(arra,axis=1)
+print(arra)
+array([[1, 2, 3],
+       [4, 5, 6]])
+
+np.sum(arra,axis=0) # Axis = 0 means row wise addition.
+array([5, 7, 9])
+
+np.sum(arra,axis=1) # Axis = 1 means column wise addition
+array([ 6, 15])
+
+# This row and column wise operation to axis 0 and axis 1 will remain for all 2D data structures in python
 
 # Comparison 
-arra == 55
-array([False, False, False, True, False, False])
+arra == 3
+array([False, False, True, False, False, False])
 
-np.sum(arra < 55) # how many elements are less than 55
 # it sums all True, consider True = 1 and False = 0
+np.sum(arra < 55) # HOW MANY!!!  elements are less than 55
+6 # all 6 elements are less than 55
 
+#Another method 
 np.greater(arra,55) # check how many greater than 55
 
 # Checking min and max 
@@ -183,9 +198,11 @@ np.max(arra,axis=0)
 
 # any and all 
 
-np.any(arra > 100)
+np.any(arra > 100) # Returns True if any element in array is > 100
 np.any( (arra<5) | (arra >100)) 
 
+np.all([[True,False],[True,True]]) # if everything is True then only True
+# Test whether all array elements along a given axis evaluate to True.
 ```
 
 ### Linear Algebra 
@@ -201,9 +218,10 @@ np.eye(10) # Returns the identity matrix array of size 2D 10
 # 17x + 22y = 500
 
 # Ax = B 
-A = np.array([20,10],[17,22])
+A = np.array([[20,10],[17,22]])
 B = np.array([350,500])
 X = np.linalg.solve(A,B) # X is an np array of 2 elements x and y 
+# X is a matrix/array of two elements x1 and x2
 
 # Reference for Linear  ALgebra :  np.linalg
 ```
@@ -261,6 +279,9 @@ df.columns
 Index(['id', 'name'], dtype='object')
 
 df.dtypes # Returns the type of the individual columns 
+id       int64
+name    object
+dtype: object
 
 ### Now we create series and merge then into a dataframe
 s1 = pd.Series([1,2,3,4,5], name="id")
@@ -282,14 +303,12 @@ df2.T
 
 
 ```python
-# Picking up the file student.csv
-
+# Picking up the file student in csv, json, sql, excel
 student = pd.read_csv("student.csv")
 stu2 = pd.read_excel("student2.xlsx",)
 
 student.to_csv("myfirstcsv.csv")
 stu2 = to_excel("my-student2.xlsx",)
-
 ```
 
 # Data Selection or Slicing 
@@ -298,10 +317,11 @@ stu2 = to_excel("my-student2.xlsx",)
 name = df["COl-name"] # Returns enture series 
 listofcol = ["name","id","dob"]
 extracteddata = df[listofcol]
+# df.columnname = works fine 
 
 # iloc and loc 
-df.iloc[0] # Returns first column all the rows
-df.iloc[:3] # first 3 columns of the dataframe
+df.iloc[0] # Returns all columns for first row 
+df.iloc[:3] # first 3 rows of all columns entire data
 df.loc[["id","name"]] 
 # Name of column
 ```
@@ -310,15 +330,13 @@ df.loc[["id","name"]]
 ```python
 df[df.Colname > 3]
 df.[df.quiz > 33]
-
-df[(df.quiz <= 33>) | (df.assignment > 7)]
+df[(df.salary <= 33>) | (df.workex > 7)]
 
 ## Same thing can be done through query 
 df.query('quiz > 33')
 ```
 
 ### Data Exploration 
-
 #### Task in hand 
 
 * import data
@@ -348,17 +366,18 @@ np.sum(bikes.isnull())
 bikes.isnull().sum()
 bikes.isna().sum()
 
-bikes.dropna()
-bikes.dropna(inplace=True)
+bikes.dropna() # Dropna drops the rows with na or blank columns and displays 
+bikes.dropna(inplace=True) # make permanent change
 
 # if there are duplicates in data, bikes, col : instant, drop them in place permanently. 
 bikes.drop_duplicates(subset = "instant", inplace=True) 
 
 #We can also replace na values with something else/ 
 bikes.fillna()
+df.fillna(0) # replace with 0 
 
-datedtimes =  pd.to_datetime(bikes.dteday) # We created the date./time series 
-bikes.year = datedtimes.dt.year 
+datedtimes =  pd.to_datetime(bikes.dteday) # We created the date./time series from a dataframe column
+bikes.year = datedtimes.dt.year # and then created new column from that
 ```
 
 ### Grouping and Merging in data.
@@ -368,10 +387,13 @@ bikes.year = datedtimes.dt.year
   bikes2011 =   bikes[bikes.year == 2011]
 
 # How many casual users in the data 
-dfbyseason = bikes.groupby("season")
+dfbyseason = bikes.groupby("season") # Creating a grouped data. 
+# This grouped data cannot be individually accessed. 
+
 dfbyseason.casual.sum() # This will give eachseason casual user sum 
 
-#We can also do this 
+#We will now sum it to know how many total cases per season
+# Creating sum for casual /OTC users. 
 bikes.groupby("season").casual.sum() # OR 
 seriescasual = dfbyseason["casual"].sum()
 
