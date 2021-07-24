@@ -103,9 +103,22 @@ class LinkedList:
             nodetodel = None 
             # if we delete this it will delete the actual object
 
+    def deleteallnode(self):
+        while self.head != None :
+            n = self.head
+            self.head = self.head.next
+            n = None
+        print("Deleted all Nodes Succesfully")
 
-
-
-        
-
-
+    def push(self,e):
+        self.insert_at_front(e)
+    
+    def pop(self):
+        self.deletefront()
+    
+    def top():
+        if self.is_empty():
+            print("List Empty")
+            return
+        else:
+            return print(self.head.element)
