@@ -1,0 +1,107 @@
+
+
+# The ability of a data structure to change the portion of the data structure without needing to recreate it is called mutability. These objects include lists, sets, values in a dictionary.
+
+# Immutability is the state of the data structure that can’t be tampered with after its creation. These objects are integers, strings, and keys of a dictionary. 
+
+# Generator 
+The generator function is responsible for simplifying the process of creating an iterator.
+
+def mygen_tor():
+	print('something')
+	yield 10
+	
+	print('second')
+	yield 20
+
+ It uses yield instead of return keyword. So, this will return the value against the yield keyword each time it is called. However, you need to create an iterator for this function, as shown below. If we use the return keyword in generator function it will terminate the function
+ 
+ # yield returns a value and pauses the execution while maintaining the internal states, whereas the return statement returns a value and terminates the execution of the function.
+ 
+ >>>gen = mygen_tor()
+ >>>next(gen)
+ something
+ 10
+ >>>next(gen)
+ second
+ 20
+ 
+ def mygen_tor2(x)
+	for i in range(x):
+		yield i
+		
+The function finally terminates when next() encounters the StopIteration error.
+
+def square_of_sequence(x):
+    for i in range(x):
+        yield i*i
+		
+gen=square_of_sequence(5)
+while True:
+    try:
+        print ("Received on next(): ", next(gen))
+    except StopIteration:
+        break
+		
+########################### ANOTHER WAY TO TRAVERSE an generator / ITERATOR 
+
+squres = square_of_sequence(5)
+for sqr in squres:
+    print(sqr)
+============================================================================
+Decorators : a fuction that take function as argument or can return a function
+A decorator manipulates pre-existing functions or their output, which it does by adding, deleting, or altering characteristic.
+
+#  %, /, and //?
+% - mod - returns reminder
+/ - division - returns floating point division (quotient)
+// - integer division or floor division
+
+Lambda function ; nameless function just for non repeatitive use
+means = lambda x,y : (x+y)*0.5
+means(5,60 returns 5.5
+
+## map, reduce and filter functions.
+map = maps the function to each element in the iterable 
+reduce = same like map but returns a single value ( reduce the mapped function to single element ) 
+
+lis = [1, 3, 4, 10, 4]
+print(list(itertools.accumulate(lis, lambda x, y: x+y)))
+[1, 4, 8, 18, 22]
+
+print(functools.reduce(lambda x, y: x+y, lis))
+22
+
+filter -- filters an item out of sequence = returns the elements which saisfy the filter condition
+
+def fun(variable):
+    letters = ['a', 'e', 'i', 'o', 'u']
+    if (variable in letters):
+        return True
+    else:
+        return False
+sequence  = ['g', 'e', 'e', 'k', 's']
+filtered = filter(fun, sequence)	
+list(filtered)
+['e', 'e']
+==================================================================
+
+Finding square of numbers using List Comprehension vs map():
+l1 = [x*x for x in range(10)]
+l2 = list(map(lambda x:x*x, range(10)))
+l3=[num2 for num1 in l1 for num2 in num1]
+
+# Using zip() function in List Comprehension:
+l1=['red','green','blue']
+l2=[0,1,2]
+l3=[(n1,n2) for n1,n2 in zip(l1,l2)]
+print (l3)
+
+#Output:[('red', 0), ('green', 1), ('blue', 2)]
+
+Dictionary comprehension is written within curly braces{}.In Expression key and value are separated by :
+{key:value for (key,value) in iterable if conditional}
+
+
+
+

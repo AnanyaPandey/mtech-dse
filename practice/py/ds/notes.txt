@@ -1,0 +1,41 @@
+
+Recursion v/s iteration
+# if we can divide prolem to similar/same sub problems - use recursion
+# Prominent usage of recursion is in trees and graphs. 
+	Tree is like hierarchical where each sub hierarchy is a same structure leaving the first one.
+# Recursion asked in interviews. 
+# Recursion used in Divide and conquer, greedy and dynamic prog. 
+==============
+
+How Rec Works ?
+
+# Two things are imp
+1. Base case : Exit from the loop
+2. Recursive Case : method calls itself
+
+def RecursionFunction(params):
+	if This_Happens:
+		exit_from_Loop
+	else:
+		RecursionFunction(params_Others)
+		
+# Python uses a stack memory to store all functions 
+
+nth_function_call
+--
+..
+.
+3rd_function_call
+2nd_function_call
+1st_function_call
+==================
+Execution happens from last to first, i.e. nth call, n-1th call .... uptill 1st function. 
+
+
+
+
+
+
+
+
+

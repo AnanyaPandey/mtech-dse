@@ -1,0 +1,2 @@
+def prodofarr(arr):
+    

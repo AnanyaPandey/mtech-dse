@@ -1,0 +1,120 @@
+
+Reverse string 
+'hello world'[::-1]
+
+list functions in the list 
+
+list.pop()
+list.pop(element)
+list.index(element) returns theh index of the element
+
+Linear search - O(n)
+
+# convert list to tupple
+
+weekdays = ['sun','mon','tue','wed','thu','fri','sat']
+listAsTuple = tuple(weekdays)
+
+
+# convert list to string	
+weekdays = ['sun','mon','tue','wed','thu','fri','sat']
+sweeks = ''.join(weekdays)
+
+
+
+# convert list to set
+weekdays = ['sun','mon','tue','wed','thu','fri','sat','sun','tue']
+listAsSet = set(weekdays)
+
+# count the occurrences of a particular element in the list?
+weekdays = ['sun','mon','tue','wed','thu','fri','sun','mon','mon']
+print(weekdays.count('mon'))
+
+
+#  What is <Yield> Keyword in Python?
+
+A) The <yield> keyword in Python can turn any function into a generator.
+def testgen(index):
+	weekdays = ['sun','mon','tue','wed','thu','fri','sat']
+	yield weekdays[index]
+	yield weekdays[index+1]
+
+day = testgen(0)
+print next(day), next(day)
+
+$$$$$$$$$$$$$$$$$$$$ how to handle stop iteration in generators.
+
+# How can you create Empty NumPy Array In Python?
+
+# array([], dtype=float64)
+>>> a = [1, 2, 3]
+>>> a[-1]
+3
+>>> a[-2]
+2
+>>> a[-3]
+1
+>>> a[-4]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+
+###  What is Enumerate() Function in Python?
+
+A) The Python enumerate() function adds a counter to an iterable object. enumerate() function can accept sequential indexes starting from zero
+
+subjects = ('Python', 'Interview', 'Questions')
+for i, subject in enumerate(subjects):
+	print(i, subject)
+	
+## Write a program to reverse a number in Python?
+
+def revrec(num):
+	rev=0
+	if num == 0:
+		return
+	else :
+		rev=rev*10+num%10
+		revrec(num//10)
+	return rev
+	
+## Program to find if a number is Armstrong :: 
+
+def armstrong(num):
+    n = len(list(str(num)))
+    sum = 0
+    for each in list(str(num)):
+        sum = sum + int(each) ** n
+    if sum == num:
+        print("True")
+    else:
+        print("False")
+		
+# perfect no : sum of all factors except the number itself e.g. 6 : 1 + 2 + 3 = 6
+def perfect(num):
+    sum = 0
+    for i in range(1, num):
+        if num % i == 0:
+            sum += i
+    if sum == num:
+        print("True")
+    else:
+        print("False")
+
+## Python Program to Find the Second Largest Number in a List?
+def second(arr):
+    a1 = set(arr)
+    temp = set([max(arr)])
+    print(a1)
+    print(temp)
+    return max(a1.difference(temp))
+
+Program to Count the Number of Vowels in a String?
+def countvow(arr):
+    liss = list(arr)
+    vow = {"a", "e", "i", "o", "u"}
+    count = 0
+    for each in liss:
+        if each in vow:
+            count += 1
+    return count

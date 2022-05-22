@@ -1,0 +1,50 @@
+
+
+# The ability of a data structure to change the portion of the data structure without needing to recreate it is called mutability. These objects include lists, sets, values in a dictionary.
+
+# Immutability is the state of the data structure that can’t be tampered with after its creation. These objects are integers, strings, and keys of a dictionary. 
+
+# Generator 
+The generator function is responsible for simplifying the process of creating an iterator.
+
+def mygen_tor():
+	print('something')
+	yield 10
+	
+	print('second')
+	yield 20
+
+ It uses yield instead of return keyword. So, this will return the value against the yield keyword each time it is called. However, you need to create an iterator for this function, as shown below. If we use the return keyword in generator function it will terminate the function
+ 
+ # yield returns a value and pauses the execution while maintaining the internal states, whereas the return statement returns a value and terminates the execution of the function.
+ 
+ >>>gen = mygen_tor()
+ >>>next(gen)
+ something
+ 10
+ >>>next(gen)
+ second
+ 20
+ 
+ def mygen_tor2(x)
+	for i in range(x):
+		yield i
+		
+The function finally terminates when next() encounters the StopIteration error.
+
+def square_of_sequence(x):
+    for i in range(x):
+        yield i*i
+		
+gen=square_of_sequence(5)
+while True:
+    try:
+        print ("Received on next(): ", next(gen))
+    except StopIteration:
+        break
+		
+########################### ANOTHER WAY TO TRAVERSE an generator / ITERATOR 
+
+squres = square_of_sequence(5)
+for sqr in squres:
+    print(sqr)
